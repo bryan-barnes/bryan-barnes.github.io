@@ -1,0 +1,97 @@
+---
+import Base from "../../layouts/Base.astro";
+
+const studies = [
+  {
+    badge: "2 CASE Awards, 2026",
+    title: "Academic Programs Directory",
+    description:
+      "Replaced a 12,000-pixel table of 400+ programs with faceted search, conversion tracking, and inquiry forms.",
+    result: "20,000+ apply clicks since launch",
+    href: "/case-studies/programs-directory/",
+  },
+  {
+    badge: "Platform",
+    title: "UMBC.edu Rebuild",
+    description:
+      "Rebuilt a PHP link farm into a unified WordPress platform on Pantheon. 19 legacy sites migrated; co-manage the Multisite behind nearly 600 department sites.",
+    result: "7,000+ posts, 300+ pages",
+    href: "/case-studies/umbc-website/",
+  },
+  {
+    badge: "Internal Tools",
+    title: "AI Marketing Hub",
+    description:
+      "13 internal tools on Astro: ad builder, video builder, AI copywriter, GA4 queries via MCP, and more.",
+    result: "In pilot ahead of full rollout",
+    href: "/case-studies/ai-marketing-hub/",
+  },
+  {
+    badge: "Performance",
+    title: "Performance and Accessibility",
+    description:
+      "Homepage mobile LCP from 11.2s to 3.8s. PageSpeed accessibility score of 100. 95% Silktide compliance.",
+    result: "11.2s LCP to 3.8s",
+    href: "/case-studies/performance/",
+  },
+];
+---
+
+<Base
+  title="Case Studies"
+  description="Selected work: UMBC.edu rebuild, Academic Programs Directory, AI Marketing Hub, and performance optimization."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="text-6xl md:text-8xl mb-4">
+        Case Studies
+      </h1>
+      <p class="text-muted text-lg mb-16 max-w-prose">
+        Real problems, what I built, and the results. Every number on
+        these pages is sourced and verified.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {
+          studies.map((cs) => (
+            <a
+              href={cs.href}
+              class="panel panel-hover block p-6 group"
+            >
+              <span class="badge">{cs.badge}</span>
+              <h2 class="text-3xl md:text-4xl mt-4">{cs.title}</h2>
+              <p class="text-muted mt-2 text-sm leading-relaxed">
+                {cs.description}
+              </p>
+              <p class="text-white/90 font-semibold mt-4 text-lg">
+                {cs.result}
+              </p>
+              <span class="inline-block mt-4 text-sm text-muted group-hover:text-white/80 group-hover:translate-x-1 transition-all">
+                Read case study &rarr;
+              </span>
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Short story: first-party data -->
+      <div class="mt-16">
+        <h2 class="text-3xl md:text-4xl mb-6">Also Worth Mentioning</h2>
+        <div class="panel p-6 md:p-8">
+          <h3 class="text-lg font-semibold">
+            First-Party Data and Privacy
+          </h3>
+          <p class="text-white/70 mt-3 leading-relaxed max-w-prose">
+            Built server-side tagging infrastructure on Stape, connecting
+            web analytics, ad platforms, and Salesforce data into a
+            unified measurement layer. Designed and implemented a cookie
+            consent banner and user preference center in collaboration
+            with legal counsel. Set up Salesforce Marketing Cloud for
+            enrollment communications, including IP warming and a full
+            year of inbox-placement monitoring after launch.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

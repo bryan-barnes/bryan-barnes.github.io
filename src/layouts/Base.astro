@@ -1,0 +1,128 @@
+---
+import "@fontsource-variable/inter";
+import "@fontsource-variable/big-shoulders/opsz.css";
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import ThemeSwitcher from "../components/ThemeSwitcher.astro";
+import { name, positioning, linkedin, github } from "../data/resume";
+
+// Cloudflare Web Analytics: set PUBLIC_CF_BEACON_TOKEN as a CI/CD variable (or in .env locally)
+const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description = `${name} - ${positioning}`,
+  ogImage,
+  jsonLd,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const pageTitle = title === "Home" ? `${name} - ${positioning}` : `${title} | ${name}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="theme-color" content="#f3eee3" />
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        var dark = window.matchMedia("(prefers-color-scheme: dark)");
+        function season() {
+          var m = new Date().getMonth();
+          if (m >= 8 && m <= 10) return "ravens";
+          if (m >= 11 || m <= 1) return "terps";
+          return "orioles";
+        }
+        function read(key) {
+          try { return localStorage.getItem(key) || "auto"; } catch (e) { return "auto"; }
+        }
+        function apply() {
+          var team = read("theme");
+          var lights = read("lights");
+          d.dataset.team = team === "auto" ? season() : team;
+          d.dataset.mode =
+            lights === "night" || (lights === "auto" && dark.matches) ? "night" : "day";
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.content = d.dataset.mode === "night" ? "#111111" : "#f3eee3";
+        }
+        apply();
+        if (dark.addEventListener) dark.addEventListener("change", apply);
+        window.__siteTheme = { apply: apply, read: read, season: season };
+      })();
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/android-chrome-192x192.png"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    {
+      jsonLd && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(jsonLd)}
+        />
+      )
+    }
+    {
+      cfBeaconToken && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: cfBeaconToken })}
+        />
+      )
+    }
+  </head>
+  <body class="min-h-screen font-sans">
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <ThemeSwitcher />
+
+    <script>
+      const menuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuBtn?.addEventListener("click", () => {
+        const expanded = menuBtn.getAttribute("aria-expanded") === "true";
+        menuBtn.setAttribute("aria-expanded", expanded ? "false" : "true");
+        mobileMenu?.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>

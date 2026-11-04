@@ -1,0 +1,202 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import profileImg from "../assets/images/profile.png";
+
+const topStrengths = ["Strategic", "Individualization", "Achiever", "Ideation", "Futuristic"];
+
+const leadershipQuotes = [
+  "You coach to what each person could become, not what the role requires.",
+  "When pressure hits, you move toward the problem with options already forming.",
+  "Peers bring you into conversations when they need someone to name what isn't being said.",
+];
+
+const watchFors = [
+  {
+    title: "I get ahead of the room",
+    body: "I usually see where a decision is heading before everyone else has finished step one. If I don't show my work, that reads as whiplash instead of clarity. So I lay out the options I considered, walk people through why I picked one, and name the decision out loud before we move on.",
+  },
+  {
+    title: "Not everything needs the big picture",
+    body: "I naturally connect every problem to where we're going in six months. Sometimes a person on my team just needs help with the thing in front of them today. I try to notice which conversation we're having and be present for that one.",
+  },
+];
+---
+
+<Base
+  title="About"
+  description="Bryan Barnes is a digital strategist in Baltimore who owns digital products from strategy through launch and leads the team that runs them."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6 space-y-12">
+      <h1 class="text-6xl md:text-8xl">
+        About
+      </h1>
+
+      <!-- Professional intro -->
+      <div class="panel p-6 md:p-10">
+        <div class="md:flex gap-10 items-start">
+          <div class="flex-shrink-0 mb-6 md:mb-0">
+            <Image
+              src={profileImg}
+              alt="Bryan Barnes"
+              width={192}
+              height={192}
+              class="rounded-full border-2 border-white/10"
+            />
+          </div>
+
+          <div class="space-y-4 text-white/80 leading-relaxed">
+            <p>
+              I'm a digital strategist who owns the product from the first
+              conversation to long after launch.
+            </p>
+            <p>
+              When I joined UMBC in 2019, UMBC.edu was a single PHP page of
+              links. Seven years later it's a 7,300-page platform with 1.7
+              million sessions a year. Its
+              <a href="/case-studies/programs-directory/" class="underline hover:text-white">Academic Programs Directory</a>
+              won two CASE awards in 2026, Circle of Excellence Silver and
+              Best of CASE District II, and UMBC.edu now shows up in ChatGPT
+              search results.
+            </p>
+            <p>
+              Most of that work happened before anything got built. I talked
+              with students, staff, and leadership, dug into the analytics,
+              and did UX research until I knew where people were getting
+              stuck. Then I made the call, built it with my team, and kept
+              making it better after launch.
+            </p>
+            <p>
+              Lately I've been building AI tools so our marketers can make
+              on-brand ads and ask GA4 questions in plain English. I also run
+              enrollment email in Salesforce Marketing Cloud and I'm building
+              our measurement setup with server-side tagging.
+            </p>
+            <p>
+              Before UMBC I led digital at the National Aquarium, where I
+              replaced the Salesforce CRM and e-commerce platforms behind $10M
+              a year in online revenue, and ran in-game social for the
+              Baltimore Orioles. I started out raising money for blood cancer
+              research at The Leukemia &amp; Lymphoma Society.
+            </p>
+            <p>
+              Most of my career has been at mission-driven organizations that
+              run lean. I like being the person who sets the strategy and can
+              also build the thing.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- How I lead -->
+      <div class="panel p-6 md:p-10">
+        <h2 class="text-3xl md:text-4xl mb-2">How I Lead</h2>
+        <p class="text-muted leading-relaxed mb-6 max-w-prose">
+          My top five CliftonStrengths, in order:
+        </p>
+        <ol class="flex flex-wrap gap-2 mb-10">
+          {
+            topStrengths.map((s, i) => (
+              <li class="badge">
+                <span class="text-muted mr-1">{i + 1}.</span>
+                {s}
+              </li>
+            ))
+          }
+        </ol>
+
+        <div class="space-y-6">
+          {
+            leadershipQuotes.map((q) => (
+              <blockquote class="border-l-2 border-white/30 pl-5 text-lg md:text-xl leading-snug text-white">
+                "{q}"
+              </blockquote>
+            ))
+          }
+        </div>
+        <p class="text-muted text-sm mt-6">
+          From my Gallup CliftonStrengths for Managers report, 2026.
+        </p>
+      </div>
+
+      <!-- What I watch for -->
+      <div class="panel p-6 md:p-10">
+        <h2 class="text-3xl md:text-4xl mb-6">What I Watch For</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          {
+            watchFors.map((w) => (
+              <div>
+                <h3 class="font-semibold text-white mb-2">{w.title}</h3>
+                <p class="text-white/80 leading-relaxed">{w.body}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Personal -->
+      <div class="panel p-6 md:p-10">
+        <h2 class="text-3xl md:text-4xl mb-4">Outside Work</h2>
+        <div class="space-y-4 text-white/80 leading-relaxed">
+          <p>
+            I live in Baltimore with my wife Megan and our cat Taco. I grew up
+            here, stayed here, and built my career here. I'm an Orioles,
+            Ravens, and Terps fan. (Hence the theme switcher.)
+          </p>
+          <p>
+            I'm a vegan and I believe that treating all living things with
+            compassion, kindness, and respect is what matters most.
+          </p>
+        </div>
+      </div>
+
+      <!-- Colophon -->
+      <div id="this-site" class="panel p-6 md:p-10 scroll-mt-28">
+        <h2 class="text-3xl md:text-4xl mb-4">About This Site</h2>
+        <div class="space-y-4 text-white/80 leading-relaxed">
+          <p>
+            Yes, I treat my portfolio like the teams I root for. It changes
+            uniforms with the Baltimore sports calendar: Ravens in the fall,
+            Terps in the winter, Orioles in the spring and summer. Use the
+            switch in the corner to pick your own team, or to choose between
+            a day game and a night game.
+          </p>
+          <p>
+            Every team and lighting combination meets WCAG AA color
+            contrast, because a site that talks about accessibility should
+            pass its own test.
+          </p>
+          <p class="text-muted text-sm">
+            Headlines and numbers are set in
+            <a
+              href="https://fonts.google.com/specimen/Big+Shoulders"
+              class="underline hover:text-white"
+              target="_blank"
+              rel="noopener noreferrer">Big Shoulders</a
+            >, body text in
+            <a
+              href="https://rsms.me/inter/"
+              class="underline hover:text-white"
+              target="_blank"
+              rel="noopener noreferrer">Inter</a
+            >. Built with
+            <a
+              href="https://astro.build"
+              class="underline hover:text-white"
+              target="_blank"
+              rel="noopener noreferrer">Astro</a
+            > and
+            <a
+              href="https://tailwindcss.com"
+              class="underline hover:text-white"
+              target="_blank"
+              rel="noopener noreferrer">Tailwind CSS</a
+            >, and
+            <a href="https://github.com/bryan-barnes/bryan-barnes.github.io" class="underline hover:text-white" target="_blank" rel="noopener noreferrer">open source</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

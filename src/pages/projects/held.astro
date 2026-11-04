@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import iosToday from "../../assets/images/projects/held-ios-today.png";
+import iosRhythm from "../../assets/images/projects/held-ios-rhythm.png";
+
+const li =
+  "pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink";
+---
+
+<Base
+  title="Held"
+  description="Held is a private newborn care log for feeds, diapers, sleep, medications, and notes, built by Bryan Barnes. The iOS app is in testing."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <a href="/projects/" class="text-sm text-muted hover:text-white transition-colors">
+        &larr; Projects
+      </a>
+
+      <h1 class="text-6xl md:text-8xl mt-6 mb-4">
+        Held
+      </h1>
+      <div class="flex flex-wrap gap-2">
+        <span class="badge">iOS</span>
+        <span class="badge">Product</span>
+        <span class="badge">Privacy</span>
+      </div>
+
+      <div class="mt-12 space-y-8">
+        <div class="panel p-6 md:p-8">
+          <p class="text-white/80 leading-relaxed">
+            I built
+            <a href="https://held.baby" class="underline hover:text-white" target="_blank" rel="noopener noreferrer">Held</a>
+            after our baby was born. The hospital sends you home with a paper
+            log. Held is what comes after: a private place to track feeds,
+            diapers, sleep, medications, and notes through the first months.
+            The iOS app is in testing.
+          </p>
+          <ul class="mt-4 space-y-2 text-white/80 leading-relaxed ml-4">
+            <li class={li}>
+              Built to log with one thumb while your other arm is full
+            </li>
+            <li class={li}>
+              Your partner sees each entry as it happens, and family can
+              check in without making an account
+            </li>
+            <li class={li}>
+              You can export everything and open it together at an
+              appointment
+            </li>
+            <li class={li}>
+              Nobody outside your household sees the data, and it's never sold
+            </li>
+          </ul>
+          <figure class="mt-8">
+            <div class="grid grid-cols-2 gap-4 md:gap-8 max-w-xl mx-auto">
+              <Image src={iosToday} alt="Held on iPhone in dark mode: the Today screen with Begin feeding and Begin nap buttons, today's totals, the last feed, and the last medicine. Names are blurred." class="w-full h-auto rounded-[1.75rem] border border-white/20" />
+              <Image src={iosRhythm} alt="Held on iPhone in dark mode: the Rhythm screen with today's feeds, volume, diapers, and sleep, and a weekly chart of bottle volume with the average per feed. The baby's name is blurred." class="w-full h-auto rounded-[1.75rem] border border-white/20" />
+            </div>
+            <figcaption class="text-muted text-sm mt-3 text-center">The iOS app in testing, in dark mode. I blurred our names.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

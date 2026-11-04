@@ -1,0 +1,139 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import heldImg from "../../assets/images/projects/held-ios-banner.png";
+import realDealImg from "../../assets/images/projects/realdeal-home.png";
+import touchdownsImg from "../../assets/images/projects/touchdowns.png";
+import veganImg from "../../assets/images/projects/veganbaltimore.png";
+
+const projects = [
+  {
+    title: "Held",
+    description:
+      "A newborn care log I built after our baby was born. Feeds, diapers, sleep, and medications, logged one-handed, shared with your household, and never sold. The iOS app is in testing.",
+    tech: "iOS, Product, Privacy",
+    href: "/projects/held/",
+    url: "held.baby",
+    image: heldImg,
+  },
+  {
+    title: "Touchdowns.Live",
+    description:
+      "A live, ad-free feed of every NFL touchdown as it happens. It went from zero to 3,000 organic Google clicks in its first 28 days.",
+    tech: "Live Data, Product, SEO",
+    href: "/projects/touchdowns-live/",
+    url: "touchdowns.live",
+    image: touchdownsImg,
+  },
+  {
+    title: "Vegan Baltimore",
+    description:
+      "A live map of every spot from the @vegan_baltimore Instagram account, 217 so far, so you can find vegan food by location instead of scrolling a feed.",
+    tech: "Maps, Product, Community",
+    href: "/projects/vegan-baltimore/",
+    url: "veganbaltimore.com",
+    image: veganImg,
+  },
+  {
+    title: "The Real Deal",
+    description:
+      "A free browser card game about monopoly power, built from real antitrust history for high school and college classrooms, with teacher materials.",
+    tech: "Game Design, Education",
+    href: "/projects/the-real-deal/",
+    url: "realdealga.me",
+    image: realDealImg,
+  },
+  {
+    title: "Home Lab",
+    description:
+      "A tower I built to run open-source AI models at home, from Ollama to llama.cpp, plus a connected home with a family dashboard.",
+    tech: "Local AI, llama.cpp, Smart Home",
+    href: "/projects/home-lab/",
+  },
+];
+
+// Finished work that's still live. A simple list, no detail pages.
+const sideHustles = [
+  {
+    title: "Hill Killer Apparel",
+    url: "https://hillkiller.com",
+    label: "hillkiller.com",
+    description:
+      "My brother's cycling and fitness apparel company. I handled design, marketing, and Shopify development for about 10 years. He runs it on his own now.",
+  },
+  {
+    title: "Edgely",
+    url: "https://edgely.bet",
+    label: "edgely.bet",
+    description:
+      "Sports analytics and models. It's where I fell for Python and data modeling, and where Touchdowns.Live came from.",
+  },
+];
+---
+
+<Base
+  title="Projects"
+  description="Side projects: Held, Touchdowns.Live, Vegan Baltimore, The Real Deal, a home AI lab, plus Hill Killer Apparel and Edgely."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 class="text-6xl md:text-8xl mb-4">
+        Projects
+      </h1>
+      <p class="text-muted text-lg mb-16 max-w-prose">
+        Side builds and hobby projects. I was writing code long before AI
+        tools existed, and I still do it for fun.
+      </p>
+
+      <div class="space-y-6">
+        {
+          projects.map((p) => (
+            <a
+              href={p.href}
+              class="panel panel-hover block p-6 group"
+            >
+              {p.image && (
+                <Image
+                  src={p.image}
+                  alt=""
+                  widths={[480, 960]}
+                  sizes="(min-width: 768px) 832px, 100vw"
+                  class="w-full h-48 md:h-64 object-cover object-top rounded-sm mb-5"
+                />
+              )}
+              <h2 class="text-3xl md:text-4xl">{p.title}</h2>
+              <p class="text-muted mt-2 leading-relaxed">
+                {p.description}
+              </p>
+              <div class="flex flex-wrap items-center gap-3 mt-4">
+                <span class="badge">{p.tech}</span>
+                {p.url && (
+                  <span class="text-sm text-faint">{p.url}</span>
+                )}
+              </div>
+              <span class="inline-block mt-4 text-sm text-muted group-hover:text-white/80 group-hover:translate-x-1 transition-all">
+                Details &rarr;
+              </span>
+            </a>
+          ))
+        }
+      </div>
+
+      <h2 class="text-4xl md:text-5xl mt-20 mb-2">Side Hustles</h2>
+      <p class="text-muted mb-6">Finished, and still live.</p>
+      <ul class="border-y border-white/20 divide-y divide-white/20">
+        {
+          sideHustles.map((h) => (
+            <li class="py-5 md:flex md:items-baseline md:justify-between md:gap-8">
+              <div>
+                <h3 class="font-display font-extrabold uppercase text-2xl md:text-3xl leading-none">{h.title}</h3>
+                <p class="text-muted mt-2 leading-relaxed max-w-prose">{h.description}</p>
+              </div>
+              <a href={h.url} target="_blank" rel="noopener noreferrer" class="inline-block mt-3 md:mt-0 text-sm underline hover:text-white whitespace-nowrap">{h.label} &nearr;</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>

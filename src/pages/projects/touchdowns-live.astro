@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import feed from "../../assets/images/projects/touchdowns.png";
+import clicks from "../../assets/images/projects/touchdowns-3k-clicks.png";
+
+const li =
+  "pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink";
+---
+
+<Base
+  title="Touchdowns.Live"
+  description="Touchdowns.Live is a live, ad-free feed of every NFL touchdown, built by Bryan Barnes. It went from zero to 3,000 organic Google clicks in its first 28 days."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <a href="/projects/" class="text-sm text-muted hover:text-white transition-colors">
+        &larr; Projects
+      </a>
+
+      <h1 class="text-6xl md:text-8xl mt-6 mb-4">
+        Touchdowns.Live
+      </h1>
+      <div class="flex flex-wrap gap-2">
+        <span class="badge">Live Data</span>
+        <span class="badge">Product</span>
+        <span class="badge">SEO</span>
+      </div>
+
+      <div class="mt-12 space-y-8">
+        <div class="panel p-6 md:p-8">
+          <p class="text-white/80 leading-relaxed">
+            <a href="https://www.touchdowns.live" class="underline hover:text-white" target="_blank" rel="noopener noreferrer">Touchdowns.Live</a>
+            is a live feed of every NFL touchdown as it happens, with no ads.
+            It grew out of the sports data side project where I fell for
+            Python and data modeling.
+          </p>
+          <ul class="mt-4 space-y-2 text-white/80 leading-relaxed ml-4">
+            <li class={li}>
+              Every score in order across all games, or grouped by game
+            </li>
+            <li class={li}>
+              Weekly boards for the fastest score from kickoff and the longest
+              touchdowns, plus season leaders
+            </li>
+            <li class={li}>
+              Went from zero to <strong class="text-white">3,000 organic Google clicks in its first 28 days</strong>
+            </li>
+          </ul>
+          <figure class="mt-8">
+            <Image src={clicks} alt="Google Search Console achievement: 3K Google Search Impact. Your site reached 3K clicks from Google Search in the past 28 days. October 4, 2026." class="w-full h-auto rounded-sm" />
+            <figcaption class="text-muted text-sm mt-3">Google Search Console milestone, October 4, 2026.</figcaption>
+          </figure>
+          <figure class="mt-8">
+            <Image src={feed} alt="Touchdowns.Live showing the week's games across the top, a feed of touchdowns with player, play type, quarter, and score, and side panels for fastest score from kickoff, longest touchdowns, and touchdown leaders." class="w-full h-auto rounded-sm" />
+            <figcaption class="text-muted text-sm mt-3">Touchdowns.Live during the 2026 NFL season.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

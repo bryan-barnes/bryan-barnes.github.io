@@ -1,0 +1,40 @@
+---
+import { email, linkedin, github } from "../data/resume";
+---
+
+<footer class="mt-24">
+  <div class="max-w-6xl mx-auto px-6" aria-hidden="true"><div class="stripe"></div></div>
+  <div class="max-w-6xl mx-auto px-6 pt-10 pb-24">
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-faint text-center sm:text-left">
+        <span class="font-display font-extrabold uppercase text-base text-white tracking-wide">Bryan Barnes</span>
+        <span aria-hidden="true"> &middot; </span>Made in Baltimore.
+        <a href="/about/#this-site" class="underline hover:text-white transition-colors">Why the team colors?</a>
+      </p>
+      <div class="flex items-center gap-6">
+        <a
+          href={`mailto:${email}`}
+          class="text-xs font-bold uppercase tracking-[0.12em] text-muted hover:text-white transition-colors"
+        >
+          Email
+        </a>
+        <a
+          href={linkedin}
+          class="text-xs font-bold uppercase tracking-[0.12em] text-muted hover:text-white transition-colors"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
+        <a
+          href={github}
+          class="text-xs font-bold uppercase tracking-[0.12em] text-muted hover:text-white transition-colors"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,210 @@
+---
+import Base from "../layouts/Base.astro";
+import {
+  name,
+  positioning,
+  email,
+  linkedin,
+  siteUrl,
+  summary,
+  experience,
+  education,
+  certifications,
+  speaking,
+  skills,
+} from "../data/resume";
+---
+
+<Base
+  title="Resume"
+  description={`${name} - ${positioning}. Resume.`}
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="no-print mb-8 flex justify-between items-center">
+        <h1 class="text-6xl md:text-8xl">Resume</h1>
+        <button
+          onclick="window.print()"
+          class="btn btn-ghost !py-2 !px-4 !text-xs"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path
+              d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+            ></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          Print / Save PDF
+        </button>
+      </div>
+
+      <div class="panel p-6 md:p-10 resume-content">
+        <!-- Header -->
+        <header class="mb-8 pb-6 border-b border-white/10 print:border-gray-300">
+          <h1 class="text-5xl md:text-6xl print-black">{name}</h1>
+          <p class="text-lg text-white/70 mt-1 print-gray">
+            {positioning}
+          </p>
+          <p class="text-sm text-muted mt-2 print-gray">
+            Baltimore, MD (remote or hybrid) &middot;
+            <a href={`mailto:${email}`} class="hover:text-white transition-colors"
+              >{email}</a
+            >
+            &middot;
+            <a
+              href={linkedin}
+              class="hover:text-white transition-colors"
+              target="_blank"
+              rel="noopener noreferrer">linkedin.com/in/jbryanbarnes</a
+            >
+            &middot;
+            <a href={siteUrl} class="hover:text-white transition-colors"
+              >jbryanbarnes.com</a
+            >
+          </p>
+        </header>
+
+        <!-- Summary -->
+        <section class="mb-8">
+          <h2 class="text-2xl mb-3 print-black">Summary</h2>
+          <p class="text-white/80 leading-relaxed text-[0.95rem] print-gray">
+            {summary}
+          </p>
+        </section>
+
+        <!-- Experience -->
+        <section class="mb-8">
+          <h2 class="text-2xl mb-4 print-black">Experience</h2>
+          <div class="space-y-6">
+            {
+              experience.map((role) => (
+                <div>
+                  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-0.5">
+                    <div>
+                      <h3 class="font-semibold print-black">
+                        {role.title}
+                      </h3>
+                      <p class="text-muted text-sm print-gray">
+                        {role.company}{role.department && `, ${role.department}`} &middot; {role.location}
+                      </p>
+                    </div>
+                    <p class="text-faint text-sm whitespace-nowrap print-gray">
+                      {role.startDate} &ndash; {role.endDate}
+                      {role.note && <span class="block">({role.note})</span>}
+                    </p>
+                  </div>
+                  <ul class="mt-2 space-y-1 text-white/80 text-[0.9rem] leading-relaxed print-gray">
+                    {role.bullets.map((bullet) => (
+                      <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.55em] before:w-1 before:h-1 before:bg-accent-ink print:before:bg-gray-400">
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                  {role.earlierRoles?.map((er) => (
+                    <div class="mt-4">
+                      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-0.5">
+                        <div>
+                          <h3 class="font-semibold print-black">{er.title}</h3>
+                          <p class="text-muted text-sm print-gray">UMBC{er.department && `, ${er.department}`}</p>
+                        </div>
+                        <p class="text-faint text-sm whitespace-nowrap print-gray">
+                          {er.startDate} &ndash; {er.endDate}
+                        </p>
+                      </div>
+                      <ul class="mt-2 space-y-1 text-white/80 text-[0.9rem] leading-relaxed print-gray">
+                        {er.bullets.map((bullet) => (
+                          <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.55em] before:w-1 before:h-1 before:bg-accent-ink print:before:bg-gray-400">
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="mb-8">
+          <h2 class="text-2xl mb-4 print-black">Skills</h2>
+          <div class="space-y-2">
+            {
+              skills.map((cat) => (
+                <p class="text-[0.9rem] text-white/80 print-gray">
+                  <span class="font-semibold text-white/90 print-black">
+                    {cat.category}:
+                  </span>{" "}
+                  {cat.items.join(", ")}
+                </p>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Education -->
+        <section class="mb-8">
+          <h2 class="text-2xl mb-4 print-black">Education</h2>
+          {
+            education.map((edu) => (
+              <div>
+                <h3 class="font-semibold print-black">{edu.degree}</h3>
+                <p class="text-muted text-sm print-gray">
+                  {edu.institution}
+                </p>
+              </div>
+            ))
+          }
+        </section>
+
+        <!-- Certifications -->
+        <section class="mb-8">
+          <h2 class="text-2xl mb-4 print-black">
+            Certifications
+          </h2>
+          <div class="space-y-1">
+            {
+              certifications.map((cert) => (
+                <p class="text-[0.9rem] text-white/80 print-gray">
+                  <span class="font-medium text-white/90 print-black">
+                    {cert.name}
+                  </span>{" "}
+                  <span class="text-muted">
+                    &middot; {cert.issuer}
+                  </span>
+                </p>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Speaking -->
+        <section>
+          <h2 class="text-2xl mb-4 print-black">Speaking</h2>
+          {
+            speaking.map((talk) => (
+              <p class="text-[0.9rem] text-white/80 print-gray">
+                <span class="font-medium text-white/90 print-black">
+                  {talk.title}
+                </span>{" "}
+                <span class="text-muted">
+                  &middot; {talk.event}{talk.location ? `, ${talk.location}` : ""} ({talk.date})
+                </span>
+              </p>
+            ))
+          }
+        </section>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,58 @@
+---
+import Base from "../../layouts/Base.astro";
+
+const li =
+  "pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink";
+---
+
+<Base
+  title="Home Lab"
+  description="Bryan Barnes runs open-source language models on a tower he built at home, and a connected home with a family dashboard."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <a href="/projects/" class="text-sm text-muted hover:text-white transition-colors">
+        &larr; Projects
+      </a>
+
+      <h1 class="text-6xl md:text-8xl mt-6 mb-4">
+        Home Lab
+      </h1>
+      <div class="flex flex-wrap gap-2">
+        <span class="badge">Local AI</span>
+        <span class="badge">llama.cpp</span>
+        <span class="badge">Smart Home</span>
+      </div>
+
+      <div class="mt-12 space-y-8">
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">Running AI models at home</h2>
+          <p class="text-white/80 leading-relaxed">
+            I built a tower to run open-source AI models at home.
+          </p>
+          <ul class="mt-4 space-y-2 text-white/80 leading-relaxed ml-4">
+            <li class={li}>
+              Started with Ollama, then moved to llama.cpp
+            </li>
+            <li class={li}>
+              Try out different open models as they're released
+            </li>
+            <li class={li}>
+              Built my own setup that swaps models in and out, since the ones
+              I use can't all run on my GPU at the same time
+            </li>
+          </ul>
+        </div>
+
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">A connected home</h2>
+          <p class="text-white/80 leading-relaxed">
+            The house is connected too. I built a personalized dashboard for
+            our family, including a daily news rundown from local sources we
+            chose.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

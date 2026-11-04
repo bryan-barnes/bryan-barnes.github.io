@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import map from "../../assets/images/projects/veganbaltimore.png";
+
+const li =
+  "pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink";
+---
+
+<Base
+  title="Vegan Baltimore"
+  description="Vegan Baltimore puts every spot from the @vegan_baltimore Instagram account on one searchable map. Built by Bryan Barnes."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <a href="/projects/" class="text-sm text-muted hover:text-white transition-colors">
+        &larr; Projects
+      </a>
+
+      <h1 class="text-6xl md:text-8xl mt-6 mb-4">
+        Vegan Baltimore
+      </h1>
+      <div class="flex flex-wrap gap-2">
+        <span class="badge">Maps</span>
+        <span class="badge">Product</span>
+        <span class="badge">Community</span>
+      </div>
+
+      <div class="mt-12 space-y-8">
+        <div class="panel p-6 md:p-8">
+          <p class="text-white/80 leading-relaxed">
+            <a href="https://veganbaltimore.com" class="underline hover:text-white" target="_blank" rel="noopener noreferrer">Vegan Baltimore</a>
+            grew out of the
+            <a href="https://www.instagram.com/vegan_baltimore/" class="underline hover:text-white" target="_blank" rel="noopener noreferrer">@vegan_baltimore</a>
+            Instagram account, which covers vegan food all over the city. Finding
+            a spot near you used to mean scrolling the feed. I helped the
+            creator put every post on a live map instead, so you can find new
+            vegan options by location without opening Instagram.
+          </p>
+          <ul class="mt-4 space-y-2 text-white/80 leading-relaxed ml-4">
+            <li class={li}>
+              217 spots across Baltimore City, Baltimore County, and Howard
+              County
+            </li>
+            <li class={li}>
+              Search by spot, dish, or neighborhood, and filter by 100% vegan
+              or vegan options, cuisine, type of place, and area
+            </li>
+            <li class={li}>
+              Every spot links back to the original post, so the photos, the
+              words, and the credit stay with the creator
+            </li>
+            <li class={li}>
+              Readers can suggest places the feed hasn't covered yet
+            </li>
+          </ul>
+          <figure class="mt-8">
+            <Image src={map} alt="Vegan Baltimore: a search box and filters for cuisine, type of place, and area above a list of spots with food photos, beside a map of the Baltimore region with clustered pins." class="w-full h-auto rounded-sm" />
+            <figcaption class="text-muted text-sm mt-3">Vegan Baltimore at launch, October 2026. Photos are from @vegan_baltimore.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,215 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import beforeTable from "../../assets/images/case-studies/programs-directory/before-table-2019.png";
+import afterDirectory from "../../assets/images/case-studies/programs-directory/after-directory.png";
+import searchComputer from "../../assets/images/case-studies/programs-directory/search-computer.png";
+import programPage from "../../assets/images/case-studies/programs-directory/program-page.png";
+import dashboardTotals from "../../assets/images/case-studies/programs-directory/dashboard-totals.png";
+
+const caseUrl =
+  "https://www.case.org/awards/circle-excellence/2026/umbc-academic-programs-directory";
+const bestOfUrl = "https://caseawards.secure-platform.com/a/gallery/rounds/549/details/306753";
+const bullet =
+  "pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink";
+---
+
+<Base
+  title="Academic Programs Directory"
+  description="CASE Circle of Excellence Silver and Best of CASE District II, 2026. Replaced a 12,000-pixel table with faceted search: 20,000+ apply clicks and 4,000+ inquiries since June 2025."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <a
+        href="/case-studies/"
+        class="text-sm text-muted hover:text-white transition-colors"
+      >
+        &larr; Case Studies
+      </a>
+
+      <h1 class="text-6xl md:text-8xl mt-6 mb-4">
+        Academic Programs Directory
+      </h1>
+      <div class="flex flex-wrap gap-2">
+        <span class="badge">CASE Circle of Excellence Silver 2026</span>
+        <span class="badge">Best of CASE District II 2026</span>
+        <span class="badge">Marketing: Micro-sites</span>
+      </div>
+      <p class="text-lg text-white/80 leading-relaxed mt-6 max-w-2xl">
+        One searchable home for 400+ UMBC programs at
+        <a href="https://umbc.edu/academics/programs/" class="underline hover:text-white" target="_blank" rel="noopener noreferrer">umbc.edu/programs</a>,
+        launched June 2025. I designed it and wrote most of the code.
+      </p>
+
+      <div class="mt-12 space-y-12">
+        <!-- Judges -->
+        <figure class="panel p-6 md:p-8">
+          <blockquote class="text-xl md:text-2xl leading-snug text-white">
+            "A highly effective, execution-driven micro-site that transforms
+            a fragmented and difficult-to-navigate academic catalog into a
+            centralized, user-friendly discovery and conversion platform."
+          </blockquote>
+          <figcaption class="text-muted text-sm mt-4">
+            CASE Circle of Excellence judges, 2026 &middot;
+            <a href={caseUrl} class="underline hover:text-white" target="_blank" rel="noopener noreferrer">Read the award entry</a>
+          </figcaption>
+        </figure>
+
+        <!-- Before / after -->
+        <div class="grid md:grid-cols-[1fr_2fr] gap-6 items-start">
+          <figure class="panel p-3">
+            <div class="relative max-h-[420px] overflow-hidden rounded-sm">
+              <Image src={beforeTable} alt="The 2019 UMBC programs page: a long plain table of program names and degree links, with no search or filters." class="w-full h-auto" />
+              <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent"></div>
+            </div>
+            <figcaption class="text-muted text-sm mt-3 px-1">
+              Before: one table, 12,000 pixels long. This is the top of it.
+            </figcaption>
+          </figure>
+          <figure class="panel p-3">
+            <Image src={afterDirectory} alt="The new UMBC Academic Program Search, with a search box and filters for degree level, degree type, and area of study beside a list of 300 programs." class="w-full h-auto rounded-sm" />
+            <figcaption class="text-muted text-sm mt-3 px-1">
+              After: search and filter the whole catalog in one place.
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Problem -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">The Problem</h2>
+          <p class="text-white/80 leading-relaxed">
+            Program information lived on UMBC.edu in a single table 12,000
+            pixels long, with links out to details scattered across
+            department sites. There was no search, no consistent program
+            page, and no way to filter by degree level, degree type, area
+            of study, or campus. Students, families, and advisors had to
+            scroll and hope.
+          </p>
+        </div>
+
+        <!-- What I Built -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">What I Built</h2>
+          <div class="space-y-4 text-white/80 leading-relaxed">
+            <p>
+              I designed the directory and wrote about 80% of the code,
+              including the search and filter logic and the conversion
+              tracking. A front-end developer built the initial framework
+              and custom fields before going on leave.
+            </p>
+            <ul class="space-y-2 ml-4">
+              <li class={bullet}>
+                Faceted search with filters for degree level, degree type,
+                area of study, and campus location
+              </li>
+              <li class={bullet}>
+                A standard page for every program, each with Request Info
+                and Apply Now buttons
+              </li>
+              <li class={bullet}>
+                Tracking on every apply click, inquiry form completion,
+                search term, and filter, reported in GA4 and Looker Studio
+              </li>
+              <li class={bullet}>
+                Deduplication so programs offered at several degree levels
+                show up as distinct, searchable entries
+              </li>
+              <li class={bullet}>
+                Relevance sorting with tie-breaking, plus clear-all and
+                reset behavior
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 items-start">
+          <figure class="panel p-3">
+            <Image src={searchComputer} alt="A search for 'computer' in the directory returns 11 programs, from the Computer Science major to an Artificial Intelligence certificate." class="w-full h-auto rounded-sm" />
+            <figcaption class="text-muted text-sm mt-3 px-1">
+              Searching "computer" returns 11 programs across every degree level.
+            </figcaption>
+          </figure>
+          <figure class="panel p-3">
+            <Image src={programPage} alt="The Biological Sciences master's program page, with an At a Glance panel and Request Info and Apply Now buttons." class="w-full h-auto rounded-sm" />
+            <figcaption class="text-muted text-sm mt-3 px-1">
+              Every program page puts Request Info and Apply Now in the same place.
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Results -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-2">Results</h2>
+          <p class="text-muted text-sm mb-6">Launch in June 2025 through October 2026</p>
+          <div class="grid sm:grid-cols-3 gap-6 mb-8">
+            <div class="text-center">
+              <p class="stat text-5xl">20,023</p>
+              <p class="text-muted text-sm mt-1">Apply clicks</p>
+            </div>
+            <div class="text-center">
+              <p class="stat text-5xl">4,076</p>
+              <p class="text-muted text-sm mt-1">Inquiry form completions</p>
+            </div>
+            <div class="text-center">
+              <p class="stat text-5xl">860K</p>
+              <p class="text-muted text-sm mt-1">Pageviews</p>
+            </div>
+          </div>
+          <figure class="mb-8">
+            <Image src={dashboardTotals} alt="Looker Studio dashboard for June 24, 2025 to October 24, 2026: 860,468 views, 237,730 sessions, 196,227 engaged sessions, 17.46% bounce rate, 4,076 inquiry form completions, and 20,023 apply clicks." class="w-full h-auto rounded-sm" />
+            <figcaption class="text-muted text-sm mt-3">
+              The launch tracking dashboard I built in Looker Studio.
+            </figcaption>
+          </figure>
+
+          <p class="text-muted text-sm mb-6">First nine months, as reported to CASE</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-6">
+            <div class="text-center">
+              <p class="stat text-4xl">87,000+</p>
+              <p class="text-muted text-sm mt-1">Users</p>
+            </div>
+            <div class="text-center">
+              <p class="stat text-4xl">68%</p>
+              <p class="text-muted text-sm mt-1">Traffic from organic search</p>
+            </div>
+            <div class="text-center">
+              <p class="stat text-4xl">87%</p>
+              <p class="text-muted text-sm mt-1">Engagement rate</p>
+            </div>
+            <div class="text-center">
+              <p class="stat text-4xl">11.6%</p>
+              <p class="text-muted text-sm mt-1">Bounce rate on the directory</p>
+            </div>
+          </div>
+          <p class="text-white/80 leading-relaxed">
+            January 2026, peak enrollment season and Free Grad Application
+            Week, brought more than 20,000 users, about 59 times launch week.
+            The pages also show up in AI search: 977 visitors came from
+            chatgpt.com between launch and October 2026.
+          </p>
+        </div>
+
+        <!-- Recognition -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-6">Recognition</h2>
+          <ul class="divide-y divide-white/20 border-y border-white/20">
+            <li class="py-4 md:flex md:items-baseline md:justify-between gap-6">
+              <div>
+                <p class="font-semibold text-white">Circle of Excellence, Silver</p>
+                <p class="text-muted text-sm mt-1">CASE, 2026 &middot; Marketing: Micro-sites (Other)</p>
+              </div>
+              <a href={caseUrl} class="text-sm underline hover:text-white whitespace-nowrap" target="_blank" rel="noopener noreferrer">View the award</a>
+            </li>
+            <li class="py-4 md:flex md:items-baseline md:justify-between gap-6">
+              <div>
+                <p class="font-semibold text-white">Best of CASE District II Award</p>
+                <p class="text-muted text-sm mt-1">CASE District II, 2026 &middot; Marketing: Microsites (Other)</p>
+              </div>
+              <a href={bestOfUrl} class="text-sm underline hover:text-white whitespace-nowrap" target="_blank" rel="noopener noreferrer">View the award</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

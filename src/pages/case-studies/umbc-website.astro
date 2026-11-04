@@ -1,0 +1,118 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import home2019 from "../../assets/images/case-studies/umbc-website/homepage-2019.png";
+import home2026 from "../../assets/images/case-studies/umbc-website/homepage-2026.png";
+---
+
+<Base
+  title="UMBC.edu Rebuild"
+  description="Rebuilt UMBC.edu from a PHP link farm into a unified WordPress platform on Pantheon, migrating 19 legacy sites."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <a
+        href="/case-studies/"
+        class="text-sm text-muted hover:text-white transition-colors"
+      >
+        &larr; Case Studies
+      </a>
+
+      <h1 class="text-6xl md:text-8xl mt-6 mb-4">
+        UMBC.edu Rebuild
+      </h1>
+      <span class="badge">Platform</span>
+
+      <div class="mt-12 space-y-12">
+        <div class="grid md:grid-cols-2 gap-6 items-start">
+          <figure class="panel p-3">
+            <Image src={home2019} alt="The UMBC.edu homepage in 2019: a photo slideshow above tabs for different audiences, each holding columns of plain links out to other sites." class="w-full h-auto rounded-sm" />
+            <figcaption class="text-muted text-sm mt-3 px-1">2019: one PHP page, mostly links out to other sites.</figcaption>
+          </figure>
+          <figure class="panel p-3">
+            <Image src={home2026} alt="The UMBC.edu homepage today: a full-width hero promoting fall events, with navigation for About, Academics, Admissions and Aid, Research, Life on Campus, and Alumni and Giving." class="w-full h-auto rounded-sm" />
+            <figcaption class="text-muted text-sm mt-3 px-1">Today: a unified WordPress platform with 7,000+ posts and 300+ pages.</figcaption>
+          </figure>
+        </div>
+
+        <!-- Problem -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">The Problem</h2>
+          <p class="text-white/80 leading-relaxed">
+            UMBC.edu was a single PHP homepage that functioned as a
+            link farm, pointing visitors out to hundreds of scattered
+            subdomains and microsites, some dating back to the 1990s.
+            Content was fragmented across 550+ subdomains with no
+            consistent design, no shared navigation, and no central
+            content management. Departments had no easy way to keep
+            their web presence current. The result was a digital
+            experience that didn't reflect the university's quality.
+          </p>
+        </div>
+
+        <!-- What I Built -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">What I Built</h2>
+          <div class="space-y-4 text-white/80 leading-relaxed">
+            <p>
+              I rebuilt UMBC.edu as a unified WordPress platform on
+              Pantheon with a custom theme and custom plugins that I
+              developed. The project involved:
+            </p>
+            <ul class="space-y-2 ml-4">
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                Migrating 19 legacy sites into the new platform
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                Consolidating 7,000+ posts and 300+ pages into a
+                coherent content architecture
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                Auditing 550 scattered subdomains with the Library and
+                DoIT, archiving SEO-rich legacy content with
+                rank-preserving redirects
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                Co-managing, with IT, the separate WordPress Multisite
+                that runs nearly 600 department sites, where departments
+                own their own content
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                Designing a plain-language taxonomy ("Area of Study")
+                that allows multi-category assignments across content
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">Results</h2>
+          <div class="grid sm:grid-cols-3 gap-6 mb-6">
+            <div class="text-center">
+              <p class="stat text-5xl">7,000+</p>
+              <p class="text-muted text-sm mt-1">Posts migrated</p>
+            </div>
+            <div class="text-center">
+              <p class="stat text-5xl">300+</p>
+              <p class="text-muted text-sm mt-1">Pages</p>
+            </div>
+            <div class="text-center">
+              <p class="stat text-5xl">~600</p>
+              <p class="text-muted text-sm mt-1">Department sites on the Multisite</p>
+            </div>
+          </div>
+          <p class="text-white/80 leading-relaxed">
+            The strategy was to build out UMBC.edu so it answers about 90%
+            of what our audiences come looking for, and send the other 10%
+            to department sites. The platform replaced a fragmented web
+            presence with a single, managed system. Departments can maintain their own
+            content within a consistent design and navigation framework.
+            Nineteen legacy sites were consolidated, with rank-preserving
+            redirects for legacy content.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

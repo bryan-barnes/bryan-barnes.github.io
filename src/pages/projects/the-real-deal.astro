@@ -1,0 +1,73 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import home from "../../assets/images/projects/realdeal-home.png";
+import learn from "../../assets/images/projects/realdeal-learn.png";
+import mHand from "../../assets/images/projects/realdeal-mobile-hand.png";
+import mPay from "../../assets/images/projects/realdeal-mobile-payment.png";
+import mSwap from "../../assets/images/projects/realdeal-mobile-exchange.png";
+
+const li =
+  "pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink";
+---
+
+<Base
+  title="The Real Deal"
+  description="The Real Deal is a free browser card game about monopoly power, built by Bryan Barnes for high school and college classrooms."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <a href="/projects/" class="text-sm text-muted hover:text-white transition-colors">
+        &larr; Projects
+      </a>
+
+      <h1 class="text-6xl md:text-8xl mt-6 mb-4">
+        The Real Deal
+      </h1>
+      <div class="flex flex-wrap gap-2">
+        <span class="badge">Game Design</span>
+        <span class="badge">Education</span>
+      </div>
+
+      <div class="mt-12 space-y-8">
+        <div class="panel p-6 md:p-8">
+          <p class="text-white/80 leading-relaxed">
+            <a href="https://realdealga.me" class="underline hover:text-white" target="_blank" rel="noopener noreferrer">The Real Deal</a>
+            is a free browser card game about monopoly power, written first
+            for high school and college classrooms. Every card comes from
+            real antitrust history. Standard Oil, Ma Bell, and today's
+            platform giants all play by the same rules until somebody breaks
+            them up. First to three monopolies wins.
+          </p>
+          <ul class="mt-4 space-y-2 text-white/80 leading-relaxed ml-4">
+            <li class={li}>
+              Play against friends or the computer, right in the browser
+            </li>
+            <li class={li}>
+              Students can play as guests, so a class doesn't need accounts
+            </li>
+            <li class={li}>
+              Free teacher materials: a facilitation guide, plain-language
+              vocabulary, and a sourced fact library for class discussion
+            </li>
+          </ul>
+          <figure class="mt-8">
+            <Image src={home} alt="The Real Deal home page: 'A card game about monopoly power' beside three fanned cards for Standard Oil, Network Effects, and a trust-busting action." class="w-full h-auto rounded-sm" />
+          </figure>
+          <figure class="mt-8">
+            <Image src={learn} alt="The Real Deal's Learn page, 'Teach with the game,' listing teacher resources: a teacher guide, vocabulary, assignments, lesson plans, and a facts library." class="w-full h-auto rounded-sm" />
+            <figcaption class="text-muted text-sm mt-3">The game's home page and its teacher resources.</figcaption>
+          </figure>
+          <figure class="mt-10">
+            <div class="grid grid-cols-3 gap-3 md:gap-6">
+              <Image src={mHand} alt="A game in progress on a phone: your turn with three plays left, the players' monopoly progress, and your hand of market, rent, and wild cards." class="w-full h-auto rounded-[1.75rem] border border-white/20" />
+              <Image src={mPay} alt="A Payment Required notice: the computer player Rockefeller plays Collect 2 Each, and you pick money cards to pay $2." class="w-full h-auto rounded-[1.75rem] border border-white/20" />
+              <Image src={mSwap} alt="An Exchange Proposed notice: Rockefeller plays Swap Market to trade Google Search for your U.S. Steel Combine." class="w-full h-auto rounded-[1.75rem] border border-white/20" />
+            </div>
+            <figcaption class="text-muted text-sm mt-3">Two turns against the computer on a phone: your hand, a rent demand, and a swap.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

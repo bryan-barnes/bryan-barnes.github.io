@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Astro
+.astro/
+
+# Environment
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Claude IDE
+.claude/
+
+# Private career docs (never publish)
+resume*.md
+website-rebuild-prompt.md
+Bryan-Barnes-Resume.*
+screenshots-inbox/

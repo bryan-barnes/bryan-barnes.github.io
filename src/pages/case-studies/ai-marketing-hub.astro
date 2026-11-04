@@ -1,0 +1,158 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import hubHome from "../../assets/images/case-studies/ai-marketing-hub/hub-home.png";
+import msAiLanding from "../../assets/images/case-studies/ai-marketing-hub/ms-in-ai-landing.png";
+import natSciLanding from "../../assets/images/case-studies/ai-marketing-hub/natural-sciences-landing.png";
+---
+
+<Base
+  title="AI Marketing Hub"
+  description="13 internal tools on Astro for the UMBC marketing team: ad builder, video builder, AI copywriter, GA4 reporting, and more."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <a
+        href="/case-studies/"
+        class="text-sm text-muted hover:text-white transition-colors"
+      >
+        &larr; Case Studies
+      </a>
+
+      <h1 class="text-6xl md:text-8xl mt-6 mb-4">
+        AI Marketing Hub
+      </h1>
+      <span class="badge">Internal Tools</span>
+
+      <div class="mt-12 space-y-12">
+        <figure class="panel p-3">
+          <Image src={hubHome} alt="The Marketing HQ home screen: a sidebar listing every tool (campaign calendar, Wrike projects, writing, image resizer, banner builder, ad copy generator, keyword brainstorm, UTM and QR builder, traffic questions, email report, and more), quick links to the team's platforms, an overnight summary of what changed, and campaign performance tables. Analytics values are blurred." class="w-full h-auto rounded-sm" />
+          <figcaption class="text-muted text-sm mt-3 px-1">The Marketing HQ home screen with the full tool menu. Campaign names and analytics are blurred.</figcaption>
+        </figure>
+
+        <!-- Problem -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">The Problem</h2>
+          <p class="text-white/80 leading-relaxed">
+            Every ad resize, new headline, or traffic question meant
+            another work request. Marketers waited on designers for
+            routine ad sizes, and anyone who needed numbers had to go
+            through GA4 or wait for an analyst. Campaign tracking was
+            spread across disconnected tools.
+          </p>
+        </div>
+
+        <!-- What I Built -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">What I Built</h2>
+          <div class="space-y-4 text-white/80 leading-relaxed">
+            <p>
+              It started in 2025 as a command-line content and ad
+              generator that I turned into a web app. We used it on
+              several ad campaigns and landing pages. It has since grown
+              into an internal platform on Astro with 13 tools for the
+              marketing and digital team:
+            </p>
+            <ul class="space-y-3 ml-4">
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                <strong class="text-white">On-brand ad builder</strong>
+                &mdash; The creative director's templates programmed
+                for every ad size. Marketers type a headline and get a
+                finished, brand-compliant ad.
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                <strong class="text-white"
+                  >Kinetic-text video builder</strong
+                >
+                &mdash; Animated text videos for social, generated from
+                a script input.
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                <strong class="text-white">AI copywriter</strong>
+                &mdash; Style-guide enforcement and AI-slop checks.
+                Generates on-brand copy that doesn't read like a
+                chatbot.
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                <strong class="text-white"
+                  >12-persona ad copy generator</strong
+                >
+                &mdash; Targeted ad variations for different audience
+                segments.
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                <strong class="text-white"
+                  >Natural-language GA4 queries</strong
+                >
+                &mdash; An MCP server that lets marketers ask questions
+                about their data in plain English.
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                <strong class="text-white"
+                  >Image resizer with alt text</strong
+                >
+                &mdash; Batch image processing with AI-generated
+                accessible descriptions.
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                <strong class="text-white"
+                  >QR/UTM generator and tracker</strong
+                >
+                &mdash; Campaign link builder with tracking.
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                <strong class="text-white">Wrike project feed</strong>
+                &mdash; Project management data piped into the hub.
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                <strong class="text-white">Campaign calendars</strong>
+                &mdash; Visual planning across channels.
+              </li>
+              <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                <strong class="text-white">190-page wiki</strong>
+                &mdash; Internal documentation for the marketing
+                operation.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Early output -->
+        <div class="space-y-4">
+          <div class="grid md:grid-cols-2 gap-6 items-start">
+            <figure class="panel p-3">
+              <div class="relative max-h-[520px] overflow-hidden rounded-sm">
+                <Image src={msAiLanding} alt="Landing page for UMBC's Master of Science in Artificial Intelligence, with a fact sheet request form, key stats, and program highlights." class="w-full h-auto" />
+                <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/80 to-transparent"></div>
+              </div>
+              <figcaption class="text-muted text-sm mt-3 px-1">MS in Artificial Intelligence landing page</figcaption>
+            </figure>
+            <figure class="panel p-3">
+              <div class="relative max-h-[520px] overflow-hidden rounded-sm">
+                <Image src={natSciLanding} alt="Landing page for UMBC graduate degrees in the natural sciences, with a request information form, program list, and return on investment stats." class="w-full h-auto" />
+                <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/80 to-transparent"></div>
+              </div>
+              <figcaption class="text-muted text-sm mt-3 px-1">Graduate Degrees in Natural Sciences landing page</figcaption>
+            </figure>
+          </div>
+          <p class="text-muted text-sm px-1">
+            Two graduate recruitment landing pages built with the early
+            generator, before it grew into the Hub.
+          </p>
+        </div>
+
+        <!-- Status -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">Status</h2>
+          <p class="text-white/80 leading-relaxed">
+            In pilot with the marketing and digital team ahead of
+            rollout to creative and social. Metrics will be added
+            after rollout with data from Wrike.
+          </p>
+
+          <!-- TODO: add individual tool screenshots, the 60-second demo video, and Wrike before/after metrics after rollout. -->
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,118 @@
+---
+import Base from "../layouts/Base.astro";
+import { experience } from "../data/resume";
+
+const caseStudyLinks: Record<string, { label: string; href: string }[]> = {
+  "University of Maryland, Baltimore County (UMBC)": [
+    { label: "UMBC.edu Rebuild", href: "/case-studies/umbc-website/" },
+    {
+      label: "Programs Directory",
+      href: "/case-studies/programs-directory/",
+    },
+    {
+      label: "AI Marketing Hub",
+      href: "/case-studies/ai-marketing-hub/",
+    },
+    {
+      label: "Performance and Accessibility",
+      href: "/case-studies/performance/",
+    },
+  ],
+};
+---
+
+<Base
+  title="Experience"
+  description="Fifteen years leading digital for UMBC, the National Aquarium, the Baltimore Orioles, and more."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 class="text-6xl md:text-8xl mb-4">
+        Experience
+      </h1>
+      <p class="text-muted text-lg mb-16 max-w-prose">
+        Fifteen years building digital platforms, leading teams, and
+        connecting strategy to execution across higher education,
+        cultural institutions, professional sports, nonprofits, and
+        the private sector.
+      </p>
+
+      <div class="space-y-12">
+        {
+          experience.map((role) => (
+            <article class="panel p-6 md:p-8">
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 mb-4">
+                <div>
+                  <h2 class="text-3xl md:text-4xl">
+                    {role.title}
+                  </h2>
+                  <p class="text-muted mt-1">
+                    {role.company}{role.department && `, ${role.department}`}
+                    <span class="text-faint">
+                      &middot; {role.location}
+                    </span>
+                  </p>
+                </div>
+                <p class="text-faint text-sm whitespace-nowrap mt-1 sm:mt-0">
+                  {role.startDate} &ndash; {role.endDate}
+                  {role.note && (
+                    <span class="block text-faint">
+                      ({role.note})
+                    </span>
+                  )}
+                </p>
+              </div>
+
+              <ul class="space-y-3 text-white/80 text-[0.95rem] leading-relaxed">
+                {role.bullets.map((bullet) => (
+                  <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+
+              {role.earlierRoles?.map((er) => (
+                <div class="mt-8 pt-6 border-t border-white/10">
+                  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 mb-3">
+                    <div>
+                      <h3 class="font-display font-extrabold uppercase text-2xl md:text-3xl leading-none">{er.title}</h3>
+                      {er.department && <p class="text-muted mt-1">{er.department}</p>}
+                    </div>
+                    <p class="text-faint text-sm whitespace-nowrap mt-1 sm:mt-0">
+                      {er.startDate} &ndash; {er.endDate}
+                    </p>
+                  </div>
+                  <ul class="space-y-3 text-white/80 text-[0.95rem] leading-relaxed">
+                    {er.bullets.map((bullet) => (
+                      <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+
+              {caseStudyLinks[role.company] && (
+                <div class="mt-6 pt-4 border-t border-white/10">
+                  <p class="text-sm text-faint mb-2">
+                    Related case studies:
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    {caseStudyLinks[role.company].map((link) => (
+                      <a
+                        href={link.href}
+                        class="badge hover:bg-white/20 transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>

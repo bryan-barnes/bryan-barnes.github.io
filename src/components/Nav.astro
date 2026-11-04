@@ -1,0 +1,92 @@
+---
+const pathname = Astro.url.pathname;
+
+const links = [
+  { href: "/case-studies/", label: "Case Studies" },
+  { href: "/experience/", label: "Experience" },
+  { href: "/projects/", label: "Projects" },
+  { href: "/resume/", label: "Resume" },
+  { href: "/about/", label: "About" },
+];
+
+function isActive(href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname.startsWith(href);
+}
+---
+
+<nav class="fixed top-0 w-full z-50 bg-black/95 backdrop-blur">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+    <a
+      href="/"
+      class="font-display font-extrabold uppercase text-[1.65rem] leading-none tracking-wide hover:text-accent-ink transition-colors"
+    >
+      Bryan Barnes
+    </a>
+
+    <div class="hidden md:flex items-center gap-7">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            aria-current={isActive(link.href) ? "page" : undefined}
+            class:list={[
+              "text-xs font-bold uppercase tracking-[0.12em] py-1 border-b-[3px] transition-colors",
+              isActive(link.href)
+                ? "text-white border-accent"
+                : "text-muted border-transparent hover:text-white hover:border-white",
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 -mr-2 text-white hover:text-accent-ink transition-colors"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="square"
+        aria-hidden="true"
+      >
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-white/15">
+    <div class="px-6 py-4 flex flex-col gap-1">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            aria-current={isActive(link.href) ? "page" : undefined}
+            class:list={[
+              "font-display font-extrabold uppercase text-2xl py-1 transition-colors",
+              isActive(link.href)
+                ? "text-accent-ink"
+                : "text-white hover:text-accent-ink",
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6" aria-hidden="true"><div class="stripe"></div></div>
+</nav>

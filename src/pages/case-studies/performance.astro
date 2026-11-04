@@ -1,0 +1,108 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import silktide from "../../assets/images/case-studies/performance/silktide.png";
+import pagespeed from "../../assets/images/case-studies/performance/pagespeed-desktop.png";
+---
+
+<Base
+  title="Performance and Accessibility"
+  description="UMBC.edu homepage mobile LCP from 11.2s to 3.8s. PageSpeed accessibility 100 on mobile and desktop. Silktide 95%."
+>
+  <section class="pt-32 pb-20 md:pt-40">
+    <div class="max-w-4xl mx-auto px-6">
+      <a
+        href="/case-studies/"
+        class="text-sm text-muted hover:text-white transition-colors"
+      >
+        &larr; Case Studies
+      </a>
+
+      <h1 class="text-6xl md:text-8xl mt-6 mb-4">
+        Performance and Accessibility
+      </h1>
+      <span class="badge">Web Performance</span>
+
+      <div class="mt-12 space-y-12">
+        <!-- Problem -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">The Problem</h2>
+          <p class="text-white/80 leading-relaxed">
+            The UMBC.edu homepage had a mobile Largest Contentful Paint
+            of 11.2 seconds. The main content was buried inside a
+            JavaScript bundle, unused CSS was shipping to every page,
+            and scripts blocked rendering. On mobile, the page was
+            effectively unusable for the first several seconds.
+          </p>
+        </div>
+
+        <!-- What I Did -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">What I Did</h2>
+          <ul class="space-y-3 text-white/80 leading-relaxed ml-4">
+            <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+              Moved the LCP paragraph out of the JavaScript bundle
+              and inlined it as critical HTML content
+            </li>
+            <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+              Deferred non-essential JavaScript and lazy-loaded
+              below-fold images
+            </li>
+            <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+              Purged unused CSS by updating Tailwind content globs
+              and removing dead styles
+            </li>
+            <li class="pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:bg-accent-ink">
+              Audited and optimized third-party script loading order
+            </li>
+          </ul>
+        </div>
+
+        <!-- Results -->
+        <div class="panel p-6 md:p-8">
+          <h2 class="text-3xl md:text-4xl mb-4">Results</h2>
+          <div class="grid sm:grid-cols-3 gap-6 mb-6">
+            <div class="text-center">
+              <p class="text-sm text-muted mb-1">Mobile LCP</p>
+              <p class="text-xl text-faint line-through">11.2s</p>
+              <p class="stat text-5xl">3.8s</p>
+            </div>
+            <div class="text-center">
+              <p class="text-sm text-muted mb-1">
+                PageSpeed Accessibility
+              </p>
+              <p class="stat text-5xl">100</p>
+            </div>
+            <div class="text-center">
+              <p class="text-sm text-muted mb-1">
+                Silktide Compliance
+              </p>
+              <p class="stat text-5xl">95%</p>
+            </div>
+          </div>
+          <p class="text-white/80 leading-relaxed">
+            These scores are across the pages built on my custom
+            WordPress theme. The accessibility work connects to a
+            broader commitment. In 2023 I spoke on it twice for CASE:
+            <strong class="text-white"
+              >"Accessible Design is Better Design (for everyone)"</strong
+            >
+            at the CASE District I &amp; II Annual Conference in March, and
+            <strong class="text-white"
+              >"Inclusion in the Digital World"</strong
+            >
+            at the CASE All Districts Online Conference in June.
+          </p>
+          <figure class="mt-8">
+            <Image src={pagespeed} alt="PageSpeed Insights desktop report for umbc.edu: Core Web Vitals assessment passed with LCP 0.9 seconds, INP 61 milliseconds, and CLS 0.01; Lighthouse scores of 96 Performance, 100 Accessibility, 96 Best Practices, 100 SEO, and 3 of 3 Agentic Browsing." class="w-full h-auto rounded-sm" />
+            <figcaption class="text-muted text-sm mt-3">PageSpeed Insights for the UMBC.edu homepage on desktop, October 31, 2026. Core Web Vitals pass on real-user data.</figcaption>
+          </figure>
+          <figure class="mt-8">
+            <Image src={silktide} alt="Silktide accessibility dashboard for the UMBC.edu homepage: 95% overall against an 83% benchmark, Level A 97.6%, Level AA 94.9%, Level AAA 90.2%, with the score climbing over September and October 2026." class="w-full h-auto rounded-sm" />
+            <figcaption class="text-muted text-sm mt-3">Silktide's WCAG 2.2 report for the UMBC.edu homepage, October 2026.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

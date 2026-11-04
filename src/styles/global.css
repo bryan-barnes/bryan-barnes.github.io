@@ -1,0 +1,399 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Theme system
+  - data-team: ravens | orioles | terps | off   (accent palette, "jersey stripe")
+  - data-mode: day | night                       (newsprint paper vs. night game)
+  Values are space-separated RGB channels so Tailwind can apply alpha.
+  Every text pair here was checked for WCAG AA (4.5:1) against --paper-2.
+*/
+@layer base {
+  :root {
+    color-scheme: light;
+    --paper: 243 238 227;
+    --paper-2: 234 227 212;
+    --ink: 22 19 15;
+    --muted: 79 73 66;
+    --faint: 101 94 85;
+
+    /* Orioles is the fallback team */
+    --accent: 223 70 1;
+    --accent-ink: 169 56 0;
+    --on-accent: 0 0 0;
+    --rule: 223 70 1;
+    --s1: #df4601;
+    --s2: #16130f;
+    --s3: #df4601;
+
+    --grain-opacity: 0.35;
+  }
+
+  [data-mode="night"] {
+    color-scheme: dark;
+    --paper: 17 17 17;
+    --paper-2: 27 27 27;
+    --ink: 241 236 226;
+    --muted: 189 182 171;
+    --faint: 163 156 145;
+    --grain-opacity: 0.12;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-mode]) {
+      color-scheme: dark;
+      --paper: 17 17 17;
+      --paper-2: 27 27 27;
+      --ink: 241 236 226;
+      --muted: 189 182 171;
+      --faint: 163 156 145;
+      --grain-opacity: 0.12;
+    }
+  }
+
+  /* Ravens: purple, black, metallic gold */
+  [data-team="ravens"] {
+    --accent: 36 23 115;
+    --rule: 158 124 12;
+    --accent-ink: 36 23 115;
+    --on-accent: 255 255 255;
+    --s1: #241773;
+    --s2: #9e7c0c;
+    --s3: #241773;
+  }
+  [data-team="ravens"][data-mode="night"] {
+    --rule: 212 175 55;
+    --paper: 14 11 28;
+    --paper-2: 24 20 48;
+    --accent: 74 54 184;
+    --accent-ink: 212 175 55;
+    --s1: #4a36b8;
+    --s2: #d4af37;
+    --s3: #4a36b8;
+  }
+
+  /* Orioles: orange, black, white */
+  [data-team="orioles"] {
+    --accent: 223 70 1;
+    --rule: 223 70 1;
+    --accent-ink: 169 56 0;
+    --on-accent: 0 0 0;
+    --s1: #df4601;
+    --s2: #16130f;
+    --s3: #df4601;
+  }
+  [data-team="orioles"][data-mode="night"] {
+    --paper: 18 16 16;
+    --paper-2: 29 25 23;
+    --accent-ink: 255 122 51;
+    --s2: #f1ece2;
+  }
+
+  /* Terps: Maryland red, gold, black, white */
+  [data-team="terps"] {
+    --accent: 200 16 46;
+    --rule: 200 16 46;
+    --accent-ink: 174 14 39;
+    --on-accent: 255 255 255;
+    --s1: #c8102e;
+    --s2: #ffd200;
+    --s3: #16130f;
+  }
+  [data-team="terps"][data-mode="night"] {
+    --rule: 255 210 0;
+    --paper: 19 15 16;
+    --paper-2: 31 23 24;
+    --accent-ink: 255 210 0;
+    --s3: #f1ece2;
+  }
+
+  /* Off-season: ink only */
+  [data-team="off"] {
+    --accent: var(--ink);
+    --rule: var(--ink);
+    --accent-ink: var(--ink);
+    --on-accent: var(--paper);
+    --s1: rgb(var(--ink));
+    --s2: rgb(var(--ink));
+    --s3: rgb(var(--ink));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: rgb(var(--paper));
+    color: rgb(var(--ink));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  /* Newsprint grain. A small tiled SVG, painted once. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  h1,
+  h2 {
+    font-family: theme("fontFamily.display");
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+    text-wrap: balance;
+  }
+
+  a {
+    text-decoration-color: rgb(var(--accent));
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  ::selection {
+    background: rgb(var(--accent));
+    color: rgb(var(--on-accent));
+  }
+
+  :focus-visible {
+    outline: 3px solid rgb(var(--accent-ink));
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Header/footer divider: one line in the team accent, at content width */
+  .stripe {
+    height: 3px;
+    background: rgb(var(--accent));
+  }
+
+  /* Hero headline: the positioning line, set big */
+  .display-hero {
+    font-size: clamp(3.25rem, 9.5vw, 8.75rem);
+    line-height: 0.86;
+  }
+
+  .display-xl {
+    font-size: clamp(4rem, 15vw, 10rem);
+    line-height: 0.88;
+    letter-spacing: -0.005em;
+  }
+
+  .stat {
+    font-family: theme("fontFamily.display");
+    font-weight: 800;
+    line-height: 0.9;
+    font-variant-numeric: tabular-nums lining-nums;
+    color: rgb(var(--accent-ink));
+  }
+
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .panel {
+    background: rgb(var(--paper-2));
+    border-top: 3px solid rgb(var(--rule));
+  }
+
+  .panel-hover {
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .panel-hover:hover {
+    border-top-color: rgb(var(--accent));
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 rgb(var(--accent));
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgb(var(--ink));
+    border: 1.5px solid rgb(var(--ink) / 0.8);
+    padding: 0.4rem 0.55rem 0.35rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.4rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 2px solid transparent;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease,
+      background-color 0.15s ease;
+  }
+
+  .btn-primary {
+    background: rgb(var(--accent));
+    color: rgb(var(--on-accent));
+    border-color: rgb(var(--accent));
+  }
+
+  .btn-ghost {
+    color: rgb(var(--ink));
+    border-color: rgb(var(--ink));
+  }
+
+  .btn-primary:hover,
+  .btn-ghost:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 rgb(var(--ink));
+  }
+
+  /* Buttons placed on an accent-filled block */
+  .btn-invert {
+    background: rgb(var(--on-accent));
+    color: rgb(var(--accent));
+    border-color: rgb(var(--on-accent));
+  }
+
+  .btn-invert-ghost {
+    color: rgb(var(--on-accent));
+    border-color: rgb(var(--on-accent));
+  }
+
+  .btn-invert:hover,
+  .btn-invert-ghost:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 rgb(var(--on-accent));
+  }
+
+  /* Ticket stub: notched sides */
+  .ticket {
+    --notch: 16px;
+    -webkit-mask:
+      radial-gradient(circle at 0 50%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)) left / 51% 100% no-repeat,
+      radial-gradient(circle at 100% 50%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)) right / 51% 100% no-repeat;
+    mask:
+      radial-gradient(circle at 0 50%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)) left / 51% 100% no-repeat,
+      radial-gradient(circle at 100% 50%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)) right / 51% 100% no-repeat;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .panel-hover,
+  .btn {
+    transition: none !important;
+  }
+  .panel-hover:hover,
+  .btn:hover {
+    transform: none !important;
+  }
+}
+
+/* Print styles for /resume page */
+@media print {
+  html,
+  html[data-mode][data-team] {
+    --paper: 255 255 255;
+    --paper-2: 255 255 255;
+    --ink: 0 0 0;
+    --muted: 68 68 68;
+    --faint: 68 68 68;
+    --accent: 0 0 0;
+    --accent-ink: 0 0 0;
+    --rule: 0 0 0;
+  }
+
+  body::before,
+  .stripe {
+    display: none !important;
+  }
+
+  nav,
+  footer,
+  .theme-switcher,
+  .no-print {
+    display: none !important;
+  }
+
+  body,
+  html {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+  }
+
+  main {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .print-black {
+    color: black !important;
+  }
+
+  .print-gray {
+    color: #444 !important;
+  }
+
+  a {
+    color: black !important;
+    text-decoration: none !important;
+  }
+
+  .panel {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  h1,
+  h2 {
+    font-family: InterVariable, Inter, system-ui, sans-serif !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    line-height: 1.2 !important;
+  }
+
+  h1 {
+    font-size: 20pt !important;
+  }
+
+  h2 {
+    font-size: 13pt !important;
+    border-bottom: 1px solid #ccc !important;
+    padding-bottom: 0.25rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  h3 {
+    font-size: 11pt !important;
+  }
+
+  section {
+    page-break-inside: avoid;
+  }
+}

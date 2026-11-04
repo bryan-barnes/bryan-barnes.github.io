@@ -1,0 +1,256 @@
+---
+import Base from "../layouts/Base.astro";
+import {
+  headline,
+  name,
+  homeSummary,
+  email,
+  linkedin,
+  github,
+  siteUrl,
+  experience,
+} from "../data/resume";
+
+const caseStudies = [
+  {
+    badge: "2 CASE Awards, 2026",
+    title: "Academic Programs Directory",
+    description:
+      "Replaced a 12,000-pixel table of 400+ programs with faceted search, conversion tracking, and inquiry forms.",
+    result: "20,000+ apply clicks since launch",
+    href: "/case-studies/programs-directory/",
+  },
+  {
+    badge: "Platform",
+    title: "UMBC.edu Rebuild",
+    description:
+      "Rebuilt a PHP link farm into a unified WordPress platform on Pantheon. 19 legacy sites migrated; co-manage the Multisite behind nearly 600 department sites.",
+    result: "1.7M sessions a year",
+    href: "/case-studies/umbc-website/",
+  },
+  {
+    badge: "Internal Tools",
+    title: "AI Marketing Hub",
+    description:
+      "13 internal tools for the marketing team: an ad builder, a video builder, an AI copywriter that knows our style guide, and plain-English GA4 reporting.",
+    result: "13 tools, now in pilot",
+    href: "/case-studies/ai-marketing-hub/",
+  },
+  {
+    badge: "Performance",
+    title: "Performance and Accessibility",
+    description:
+      "Homepage mobile LCP from 11.2s to 3.8s. PageSpeed accessibility score of 100. 95% Silktide compliance.",
+    result: "11.2s LCP to 3.8s",
+    href: "/case-studies/performance/",
+  },
+];
+
+const timelineRoles = experience.slice(0, 5);
+
+function years(start: string, end: string) {
+  const from = start.match(/\d{4}/)?.[0] ?? start;
+  const to = end === "Present" ? "Now" : (end.match(/\d{4}/)?.[0] ?? end);
+  return from === to ? from : `${from}\u2013${to.length === 4 ? to.slice(2) : to}`;
+}
+
+// About Bryan, not about one project.
+const boxScore = [
+  { value: "20+", label: "Years in marketing" },
+  { value: "7+", label: "Years at UMBC" },
+  { value: "3", label: "Flagship sites run: UMBC.edu, aqua.org, Visit Maryland" },
+  { value: "8", label: "Direct reports managed and grown, across three teams" },
+  { value: "3", label: "Recent projects launched" },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: name,
+  jobTitle: "Director of Digital Strategy",
+  url: siteUrl,
+  email: email,
+  sameAs: [linkedin, github],
+};
+---
+
+<Base
+  title="Home"
+  description={homeSummary}
+  jsonLd={jsonLd}
+>
+  <!-- Hero -->
+  <section class="pt-28 pb-14 md:pt-36 md:pb-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="display-hero !text-[clamp(3rem,7vw,6.5rem)]">
+        I <span class="text-accent-ink">lead</span> digital strategy and
+        <span class="text-accent-ink">build</span> marketing technology.
+      </h1>
+      <div class="mt-10 grid gap-8 md:grid-cols-2 md:gap-12 border-t-4 border-rule pt-6">
+        <p class="text-2xl md:text-3xl font-semibold leading-snug text-balance">
+          {headline}
+        </p>
+        <div>
+          <p class="text-muted text-lg leading-relaxed">
+            {homeSummary}
+          </p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="/case-studies/" class="btn btn-primary">
+              View case studies
+            </a>
+            <a href={`mailto:${email}`} class="btn btn-ghost">
+              Get in touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Box score -->
+  <section aria-label="Box score">
+    <div class="max-w-6xl mx-auto px-6">
+      <dl class="grid grid-cols-2 lg:grid-cols-5 border-y border-white/20">
+        {
+          boxScore.map((s, i) => (
+            <div
+              class:list={[
+                "flex flex-col py-5 md:py-6 px-3 md:px-5 border-white/20",
+                i % 2 === 1 ? "border-l" : "",
+                i > 1 ? "border-t lg:border-t-0" : "",
+                i > 0 ? "lg:border-l" : "",
+                i === 4 ? "col-span-2 lg:col-span-1 border-l-0" : "",
+              ]}
+            >
+              <dt class="text-xs font-semibold uppercase tracking-[0.1em] text-muted mt-2">
+                {s.label}
+              </dt>
+              <dd class="stat text-6xl md:text-7xl order-first">{s.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <!-- Case Studies -->
+  <section class="pt-24 pb-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="section-head mb-10">
+        <h2 class="text-5xl md:text-6xl">Selected Work</h2>
+        <a
+          href="/case-studies/"
+          class="text-xs font-bold uppercase tracking-[0.12em] text-muted hover:text-white transition-colors whitespace-nowrap"
+        >
+          All case studies &rarr;
+        </a>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        {
+          caseStudies.map((cs, i) => (
+            <a href={cs.href} class="panel panel-hover flex flex-col p-6 md:p-7 group">
+              <div class="flex items-start justify-between gap-4">
+                <span class="badge">{cs.badge}</span>
+                <span class="font-display font-extrabold text-4xl leading-none text-faint" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <h3 class="font-display font-extrabold uppercase text-3xl md:text-4xl leading-[0.95] mt-4">
+                {cs.title}
+              </h3>
+              <p class="text-muted mt-3 leading-relaxed">
+                {cs.description}
+              </p>
+              <div class="mt-auto pt-6">
+                <div class="border-t-2 border-dashed border-white/30 pt-4 flex items-end justify-between gap-4">
+                  <p class="stat text-2xl md:text-3xl">{cs.result}</p>
+                  <span class="text-xs font-bold uppercase tracking-[0.12em] text-muted group-hover:text-white whitespace-nowrap transition-colors">
+                    Read &rarr;
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Career stats: the back of the baseball card -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="section-head mb-10">
+        <h2 class="text-5xl md:text-6xl">Career Stats</h2>
+        <a
+          href="/experience/"
+          class="text-xs font-bold uppercase tracking-[0.12em] text-muted hover:text-white transition-colors whitespace-nowrap"
+        >
+          Full experience &rarr;
+        </a>
+      </div>
+      <div class="border-2 border-rule">
+        <div class="hidden md:grid grid-cols-[9rem_1fr_1fr] bg-accent text-on-accent text-xs font-bold uppercase tracking-[0.14em]" aria-hidden="true">
+          <span class="px-5 py-2.5">Years</span>
+          <span class="px-5 py-2.5">Team</span>
+          <span class="px-5 py-2.5">Position</span>
+        </div>
+        <ol>
+          {
+            timelineRoles.map((role, i) => (
+              <li class:list={["md:grid md:grid-cols-[9rem_1fr_1fr] px-5 md:px-0 py-5", i > 0 && "border-t border-white/20"]}>
+                <p class="stat text-3xl md:px-5 md:pt-1">
+                  {years(role.earlierRoles?.at(-1)?.startDate ?? role.startDate, role.endDate)}
+                </p>
+                <p class="font-semibold mt-1 md:mt-0 md:px-5">{role.company}</p>
+                <div class="md:px-5 mt-1 md:mt-0">
+                  <p class="text-muted md:text-white md:font-semibold">{role.title}</p>
+                  {role.earlierRoles && (
+                    <p class="text-faint text-xs mt-1">Promoted from {role.earlierRoles[0].title}, {role.startDate}</p>
+                  )}
+                  <p class="text-muted text-sm leading-relaxed mt-2 hidden md:block">
+                    {role.bullets[0]}
+                  </p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact: ticket stub -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="ticket bg-accent text-on-accent md:grid md:grid-cols-[1fr_auto]">
+        <div class="p-8 sm:px-12 md:p-14">
+          <h2 class="text-6xl md:text-8xl">Get in Touch</h2>
+          <p class="mt-4 text-lg max-w-md">
+            Available for Director and Senior Director roles in marketing
+            technology and digital strategy. Remote, with occasional hybrid
+            work in the Baltimore area.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href={`mailto:${email}`} class="btn btn-invert">Email me</a>
+            <a
+              href={linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-invert-ghost"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <div
+          class="hidden md:flex items-center justify-center border-l-2 border-dashed border-on-accent/60 px-10"
+          aria-hidden="true"
+        >
+          <p class="font-display font-extrabold uppercase text-5xl leading-none [writing-mode:vertical-rl] rotate-180 tracking-wide">
+            Admit One
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
